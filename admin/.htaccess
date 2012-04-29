@@ -1,0 +1,4 @@
+AuthName "Admin CMS"
+AuthType Basic
+AuthUserFile /var/www/pcm/data/www/pierrecardinmobilia.com.ua/admin/.passwd
+require valid-user

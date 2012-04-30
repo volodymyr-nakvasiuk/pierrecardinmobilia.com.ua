@@ -152,7 +152,8 @@ class ProductView extends View
 		// Категория и бренд товара
 		$product->categories = $this->categories->get_categories(array('product_id'=>$product->id));
 		$this->design->assign('brand', $this->brands->get_brand(intval($product->brand_id)));		
-		$this->design->assign('category', reset($product->categories));		
+                $category = reset($product->categories);
+		$this->design->assign('category', $this->products->product_to_category($product, $category));		
 		
 
 		// Добавление в историю просмотров товаров

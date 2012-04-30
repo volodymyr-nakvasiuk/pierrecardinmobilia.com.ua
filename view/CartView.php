@@ -1,7 +1,7 @@
 <?PHP
 
 /**
- * Admin CMS
+ * Simpla CMS
  *
  * @copyright 	2009 Denis Pikusov
  * @link 		http://simp.la
@@ -119,4 +119,26 @@ class CartView extends View
 		$deliveries = $this->delivery->get_deliveries(array('enabled'=>1));
 		$this->design->assign('deliveries', $deliveries);
 		
-		// Данные 
+		// Данные пользователя
+		if($this->user)
+		{
+			$last_order = reset($this->orders->get_orders(array('user_id'=>$this->user->id, 'limit'=>1)));
+			if($last_order)
+			{
+				$this->design->assign('name', $last_order->name);
+				$this->design->assign('email', $last_order->email);
+				$this->design->assign('phone', $last_order->phone);
+				$this->design->assign('address', $last_order->address);
+			}
+			else
+			{
+				$this->design->assign('name', $this->user->name);
+				$this->design->assign('email', $this->user->email);			
+			}
+		}
+		
+		// Выводим корзину
+		return $this->design->fetch('cart.tpl');
+	}
+	
+}

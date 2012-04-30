@@ -35,8 +35,10 @@ class IndexView extends View
 		// Содержимое корзины
 		$this->design->assign('cart',		$this->cart->get_cart());
 	
-        // Категории товаров
-		$this->design->assign('categories', $this->categories->get_categories_tree());
+                // Категории товаров
+		$categories = $this->categories->get_categories_tree();
+                $this->apply_products_to_categories(&$categories);
+		$this->design->assign('categories', $categories);
 		
 		// Страницы
 		$pages = $this->pages->get_pages(array('visible'=>1));		
@@ -81,4 +83,34 @@ class IndexView extends View
 		$this->body = $this->design->fetch($wrapper);
 		return $this->body;
 	}
+        
+        function apply_products_to_categories($categories)
+        {
+            foreach ($categories as &$category)
+            {
+                $filter = array();
+                $filter['visible'] = 1;
+                $filter['category_id'] = $category->id;
+                $filter['sort'] = 'name';
+                $filter['page'] = 1;
+                $filter['limit'] = 1000;
+                
+                $subProducts = array();
+                
+                foreach($this->products->get_products($filter) as $p)
+                {
+                    $subProducts[] = $this->products->product_to_category($p);
+                }
+                
+                if (isset($category->subcategories))
+                {
+                    $this->apply_products_to_categories(&$category->subcategories);
+                }
+                else
+                {
+                    $category->subcategories = array();
+                }
+                $category->subcategories = array_merge($category->subcategories, $subProducts);
+            }
+        }
 }

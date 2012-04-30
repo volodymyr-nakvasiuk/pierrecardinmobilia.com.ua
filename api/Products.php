@@ -13,6 +13,28 @@ require_once('Admin.php');
 
 class Products extends Admin
 {
+    public function product_to_category($p, $category = null)
+    {
+        $s = new stdClass();
+        $s->id = $p->id+100000;
+        $s->name = $p->name;
+        $s->description = $p->annotation;
+        $s->url = '../products/'.$p->url;
+        $s->meta_title = $p->meta_title;
+        $s->meta_keywords = $p->meta_keywords;
+        $s->meta_description = $p->meta_description;
+        $s->image = '';
+        $s->visible = $p->visible;
+        $s->position = $p->position;
+        
+        if ($category)
+        {
+            $s->parent_id = $category->id;
+            $s->path = $category->path;
+        }
+        
+        return $s;
+    }
 	/**
 	* Функция возвращает товары
 	* Возможные значения фильтра:

@@ -46,7 +46,8 @@ class ProductsView extends View
 			if (empty($category) || (!$category->visible && empty($_SESSION['admin'])))
 				return false;
 			$this->design->assign('category', $category);
-			$filter['category_id'] = $category->children;
+			//$filter['category_id'] = $category->children;
+                        $filter['category_id'] = $category->id;
 		}
 
 		// Если задано ключевое слово
@@ -63,7 +64,7 @@ class ProductsView extends View
 		if (!empty($_SESSION['sort']))
 			$filter['sort'] = $_SESSION['sort'];			
 		else
-			$filter['sort'] = 'position';			
+			$filter['sort'] = 'name';			
 		$this->design->assign('sort', $filter['sort']);
 		
 		// Свойства товаров

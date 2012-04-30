@@ -23,7 +23,7 @@ class IndexAdmin extends Admin
 		$this->design->assign('license', $l);
 
 		$this->design->set_templates_dir('admin/design/html');
-		$this->design->set_compiled_dir('admin/design/compiled');
+		//$this->design->set_compiled_dir('admin/design/compiled');
 		
 		$this->design->assign('settings',	$this->settings);
 		$this->design->assign('config',	$this->config);
@@ -56,11 +56,11 @@ class IndexAdmin extends Admin
 		$this->design->assign("content", $content);
 		
 		// Счетчики для верхнего меню
-		$new_orders_counter = $this->orders->count_orders(array('status'=>0));
-		$this->design->assign("new_orders_counter", $new_orders_counter);
+		//$new_orders_counter = $this->orders->count_orders(array('status'=>0));
+		//$this->design->assign("new_orders_counter", $new_orders_counter);
 		
-		$new_comments_counter = $this->comments->count_comments(array('approved'=>0));
-		$this->design->assign("new_comments_counter", $new_comments_counter);
+		//$new_comments_counter = $this->comments->count_comments(array('approved'=>0));
+		//$this->design->assign("new_comments_counter", $new_comments_counter);
 				
 	
 		return $this->body = $this->design->fetch('index.tpl');

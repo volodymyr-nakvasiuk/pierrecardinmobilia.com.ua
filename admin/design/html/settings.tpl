@@ -1,8 +1,5 @@
 {capture name=tabs}
 		<li class="active"><a href="index.php?module=SettingsAdmin">Настройки</a></li>
-		<li><a href="index.php?module=CurrencyAdmin">Валюты</a></li>
-		<li><a href="index.php?module=DeliveriesAdmin">Доставка</a></li>
-		<li><a href="index.php?module=PaymentMethodsAdmin">Оплата</a></li>
 {/capture}
  
 {$meta_title = "Настройки" scope=parent}
@@ -45,7 +42,7 @@
 		<div class="block layer">
 			<h2>Оповещения</h2>
 			<ul>
-				<li><label class=property>Оповещение о заказах</label><input name="order_email" class="admin_inp" type="text" value="{$settings->order_email|escape}" /></li>
+				<li style="display:none;"><label class=property>Оповещение о заказах</label><input name="order_email" class="admin_inp" type="text" value="{$settings->order_email|escape}" /></li>
 				<li><label class=property>Оповещение о комментариях</label><input name="comment_email" class="admin_inp" type="text" value="{$settings->comment_email|escape}" /></li>
 				<li><label class=property>Обратный адрес оповещений</label><input name="notify_from_email" class="admin_inp" type="text" value="{$settings->notify_from_email|escape}" /></li>
 			</ul>
@@ -53,7 +50,7 @@
 		<!-- Параметры (The End)-->
 
 		<!-- Параметры -->
-		<div class="block layer">
+		<div class="block layer"  style="display:none;">
 			<h2>Формат цены</h2>
 			<ul>
 				<li><label class=property>Разделитель копеек</label>
@@ -81,8 +78,8 @@
 			<ul>
 				<li><label class=property>Товаров на странице сайта</label><input name="products_num" class="admin_inp" type="text" value="{$settings->products_num|escape}" /></li>
 				<li><label class=property>Товаров на странице админки</label><input name="products_num_admin" class="admin_inp" type="text" value="{$settings->products_num_admin|escape}" /></li>
-				<li><label class=property>Максимум товаров в заказе</label><input name="max_order_amount" class="admin_inp" type="text" value="{$settings->max_order_amount|escape}" /></li>
-				<li><label class=property>Единицы измерения товаров</label><input name="units" class="admin_inp" type="text" value="{$settings->units|escape}" /></li>
+				<li style="display:none;"><label class=property>Максимум товаров в заказе</label><input name="max_order_amount" class="admin_inp" type="text" value="{$settings->max_order_amount|escape}" /></li>
+				<li style="display:none;"><label class=property>Единицы измерения товаров</label><input name="units" class="admin_inp" type="text" value="{$settings->units|escape}" /></li>
 			</ul>
 		</div>
 		<!-- Параметры (The End)-->

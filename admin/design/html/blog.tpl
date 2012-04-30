@@ -1,10 +1,10 @@
 {* Вкладки *}
 {capture name=tabs}
-	<li class="active"><a href="{url module=BlogAdmin page=null keyword=null}">Блог</a></li>
+	<li class="active"><a href="{url module=BlogAdmin page=null keyword=null}">Новости</a></li>
 {/capture}
 
 {* Title *}
-{$meta_title='Блог' scope=parent}
+{$meta_title='Новости' scope=parent}
 
 {* Поиск *}
 {if $posts || $keyword}
@@ -22,7 +22,7 @@
 	{if $keyword && $posts_count}
 	<h1>{$posts_count|plural:'Нашлась':'Нашлись':'Нашлись'} {$posts_count} {$posts_count|plural:'запись':'записей':'записи'}</h1>
 	{elseif $posts_count}
-	<h1>{$posts_count} {$posts_count|plural:'запись':'записей':'записи'} в блоге</h1>
+	<h1>{$posts_count} {$posts_count|plural:'новость':'новостей':'новости'}</h1>
 	{else}
 	<h1>Нет записей</h1>
 	{/if}

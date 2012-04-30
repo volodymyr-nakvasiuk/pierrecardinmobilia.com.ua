@@ -2,8 +2,6 @@
 {capture name=tabs}
 	<li class="active"><a href="{url module=ProductsAdmin keyword=null category_id=null brand_id=null filter=null page=null}">Товары</a></li>
 	<li><a href="index.php?module=CategoriesAdmin">Категории</a></li>
-	<li><a href="index.php?module=BrandsAdmin">Бренды</a></li>
-	<li><a href="index.php?module=FeaturesAdmin">Свойства</a></li>
 {/capture}
 
 {* Title *}

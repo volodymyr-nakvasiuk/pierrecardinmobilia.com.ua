@@ -21,7 +21,7 @@ RewriteRule ^brands/([^/]+)/page_([^/]+)/?$	index.php?module=ProductsView&brand=
 RewriteRule ^search/([^/]+)/?$	index.php?module=ProductsView&keyword=$1 [L,QSA]
 RewriteRule ^search/?$	index.php?module=ProductsView [L,QSA]
 
-# Блог
+# Новости
 RewriteRule ^blog/([^/]+)/?$	index.php?module=BlogView&url=$1 [L,QSA]
 RewriteRule ^blog/?$	index.php?module=BlogView [L,QSA]
 

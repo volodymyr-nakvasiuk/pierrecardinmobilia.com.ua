@@ -1,5 +1,4 @@
 <?PHP
-exit('Comming soon');
 /**
  * Admin CMS
  *

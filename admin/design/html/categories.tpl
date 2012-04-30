@@ -2,8 +2,6 @@
 {capture name=tabs}
 	<li><a href="index.php?module=ProductsAdmin">Товары</a></li>
 	<li class="active"><a href="index.php?module=CategoriesAdmin">Категории</a></li>
-	<li><a href="index.php?module=BrandsAdmin">Бренды</a></li>
-	<li><a href="index.php?module=FeaturesAdmin">Свойства</a></li>
 {/capture}
 
 {* Title *}

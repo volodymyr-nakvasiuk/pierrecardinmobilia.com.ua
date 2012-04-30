@@ -24,22 +24,15 @@
 	<!-- Главное меню -->
 	<ul id="main_menu"> 
 		<li><a href="index.php?module=ProductsAdmin"><img src="design/images/menu/catalog.png"><b>Каталог</b></a></li>
-		<li><a href="index.php?module=OrdersAdmin"><img src="design/images/menu/orders.png"><b>Заказы</b></a>
-		{if $new_orders_counter}
-		<div class='counter'><span>{$new_orders_counter}</span></div>
-		{/if}
-		</li>
-		<li><a href="index.php?module=UsersAdmin"><img src="design/images/menu/users.png"><b>Покупатели</b></a></li>
 		<li><a href="index.php?module=PagesAdmin"><img src="design/images/menu/pages.png"><b>Страницы</b></a></li>
-		<li><a href="index.php?module=BlogAdmin"><img src="design/images/menu/blog.png"><b>Блог</b></a></li>
+		<li><a href="index.php?module=BlogAdmin"><img src="design/images/menu/blog.png"><b>Новости</b></a></li>
 		<li>
 		<a href="index.php?module=CommentsAdmin"><img src="design/images/menu/comments.png"><b>Комментарии</b></a>
 		{if $new_comments_counter}
 		<div class='counter'><span>{$new_comments_counter}</span></div>
 		{/if}
 		</li>
-		<li><a href="index.php?module=ImportAdmin"><img src="design/images/menu/wizards.png"><b>Автоматизация</b></a></li>
-		<li><a href="index.php?module=StatsAdmin"><img src="design/images/menu/statistics.png"><b>Статистика</b></a></li>
+		<li><a href="index.php?module=BackupAdmin"><img src="design/images/menu/wizards.png"><b>Бекап</b></a></li>
 		<li><a href="index.php?module=ThemeAdmin"><img src="design/images/menu/design.png"><b>Дизайн</b></a></li>
 		<li><a href="index.php?module=SettingsAdmin"><img src="design/images/menu/settings.png"><b>Настройки</b></a></li>
 	</ul>

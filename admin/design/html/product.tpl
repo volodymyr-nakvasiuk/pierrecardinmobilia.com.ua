@@ -1,8 +1,6 @@
 {capture name=tabs}
 		<li class="active"><a href="{url module=ProductsAdmin category_id=$product->category_id return=null brand_id=null id=null}">Товары</a></li>
 		<li><a href="index.php?module=CategoriesAdmin">Категории</a></li>
-		<li><a href="index.php?module=BrandsAdmin">Бренды</a></li>
-		<li><a href="index.php?module=FeaturesAdmin">Свойства</a></li>
 {/capture}
 {if $product->id}
 {$meta_title = $product->name scope=parent}

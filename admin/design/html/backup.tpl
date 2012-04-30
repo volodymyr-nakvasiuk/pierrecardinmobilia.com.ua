@@ -1,7 +1,5 @@
 {* Вкладки *}
 {capture name=tabs}
-	<li><a href="index.php?module=ImportAdmin">Импорт</a></li>
-	<li><a href="index.php?module=ExportAdmin">Экспорт</a></li>		
 	<li class="active"><a href="index.php?module=BackupAdmin">Бекап</a></li>		
 {/capture}
 

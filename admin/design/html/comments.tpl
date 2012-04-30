@@ -29,7 +29,7 @@
 	{elseif $type=='product'}
 	<h1>{$comments_count} {$comments_count|plural:'комментарий':'комментариев':'комментария'} к товарам</h1> 
 	{elseif $type=='blog'}
-	<h1>{$comments_count} {$comments_count|plural:'комментарий':'комментариев':'комментария'} к записям в блоге</h1> 
+	<h1>{$comments_count} {$comments_count|plural:'комментарий':'комментариев':'комментария'} к новостям</h1> 
 	{/if}
 </div>	
 
@@ -108,7 +108,7 @@
 	</ul>
 	<ul>
 		<li {if $type == 'product'}class="selected"{/if}><a href='{url keyword=null type=product}'>К товарам</a></li>
-		<li {if $type == 'blog'}class="selected"{/if}><a href='{url keyword=null type=blog}'>К блогу</a></li>
+		<li {if $type == 'blog'}class="selected"{/if}><a href='{url keyword=null type=blog}'>К новостям</a></li>
 	</ul>
 	<!-- Категории товаров (The End)-->
 	

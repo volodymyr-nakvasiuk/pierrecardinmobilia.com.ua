@@ -27,7 +27,7 @@ foreach($admin->pages->get_pages() as $p)
 	}
 }
 
-// Блог
+// Новости
 foreach($admin->blog->get_posts(array('visible'=>1)) as $p)
 {
 	$url = $admin->config->root_url.'/blog/'.esc($p->url);

@@ -1,5 +1,6 @@
 <?php
 
+set_time_limit(0);
 $mebel = mysql_connect("localhost", "pcm", "jouQ1dzE");
 
 if (!$mebel) {
@@ -128,7 +129,8 @@ $imagesWH = array(
     '100x100' => array('w' => 100, 'h' => 100),
     '200x200' => array('w' => 300, 'h' => 200),
     '300x300' => array('w' => 300, 'h' => 300),
-    '800x600w' => array('w' => 800, 'h' => 60),
+    '630x630' => array('w' => 630, 'h' => 630),
+    '800x600w' => array('w' => 800, 'h' => 600),
 );
 
 foreach ($productsByCategoryID as $catId => $products) {
@@ -158,7 +160,7 @@ foreach ($productsByCategoryID as $catId => $products) {
 
         $fields = array();
         $values = array();
-        foreach ($c as $f => $v) {
+        foreach ($p as $f => $v) {
             $fields[] = '`' . $f . '`';
             $values[] = "'" . $v . "'";
         }
@@ -176,16 +178,20 @@ foreach ($productsByCategoryID as $catId => $products) {
             foreach ($imagesWH as $name => $wh) {
                 $url = 'http://pcmebel.com.ua/phpthumb/phpThumb.php?src=/files/pimg/' . $img['name'] . '&w=' . $wh['w'] . '&h=' . $wh['h'] . '&zc=1';
                 $path_parts = pathinfo($img['name']);
-                $img = dirname(__DIR__) . '/files/products/' . $path_parts['filename'] . '.' . $name . '.' . $path_parts['extension'];
-                file_put_contents($img, file_get_contents($url));
+                $im = dirname(__DIR__) . '/files/products/' . $path_parts['filename'] . '.' . $name . '.' . $path_parts['extension'];
+                file_put_contents($im, file_get_contents($url));
             }
+//            $url = 'http://pcmebel.com.ua/phpthumb/phpThumb.php?src=/files/pimg/' . $img['name'];
+//            $im = dirname(__DIR__) . '/files/products/' . $img['name'];
+//            file_put_contents($im, file_get_contents($url));
+
             $sql = "INSERT INTO  `pcm`.`s_images` (
                     `name` ,
                     `product_id` ,
                     `filename` ,
                     `position`
                 )
-                VALUES ('".$img['alt']."',  '" . $pr['id'] . "',  '" . $img['name'] . "',  '" . ((int) $img['sort']) . "');";
+                VALUES ('" . $img['alt'] . "',  '" . $pr['id'] . "',  '" . $img['name'] . "',  '" . ((int) $img['sort']) . "');";
             mysql_query($sql);
         }
     }

@@ -16,6 +16,9 @@
 
         {* Стили *}
         <link href="design/{$settings->theme|escape}/css/style.css" rel="stylesheet" type="text/css" media="screen"/>
+        <!--[if IE]>
+            <link href="design/{$settings->theme|escape}/css/style_ie.css" rel="stylesheet" type="text/css" media="screen"/>
+        <![endif]-->
         <link href="design/{$settings->theme|escape}/images/favicon.ico" rel="icon"          type="image/x-icon"/>
         <link href="design/{$settings->theme|escape}/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 
@@ -66,9 +69,9 @@
                                     },
                             fnFormatResult:
                                     function(value, data, currentValue){
-                                            var reEscape = new RegExp('(\\' + ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\'].join('|\\') + ')', 'g');
-                                            var pattern = '(' + currentValue.replace(reEscape, '\\$1') + ')';
-                                            return (data.image?"<img align=absmiddle src='"+data.image+"'> ":'') + value.replace(new RegExp(pattern, 'gi'), '<strong>$1<\/strong>');
+                                            var reEscape = new RegExp('(' + ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', ''].join('|') + ')', 'g');
+                                            var pattern = '(' + currentValue.replace(reEscape, '$1') + ')';
+                                            return (data.image?"<img align=absmiddle src='"+data.image+"'> ":'') + value.replace(new RegExp(pattern, 'gi'), '<strong>$1</strong>');
                                     }	
                     });
             });
@@ -79,6 +82,7 @@
     </head>
     <body>
         <div id="body_bg"><img src="design/{$settings->theme|escape}/images/bg.jpeg" alt="" /></div>
+        {*<div id="body_hider"></div>*}
 
         <!-- Верхняя строка -->
         <div id="top_background">
@@ -114,16 +118,6 @@
 
             <div id="left">
 
-                <!-- Поиск-->
-                <div id="search">
-                    <form action="products">
-                        <input class="input_search" type="text" name="keyword" value="{$keyword}" placeholder="Поиск товара"/>
-                        <input class="button_search" value="" type="submit" />
-                    </form>
-                </div>
-                <!-- Поиск (The End)-->
-
-
                 <!-- Меню каталога -->
                 <div id="catalog_menu">
 
@@ -136,7 +130,7 @@
                                 {if $c->visible}
                                     <li class="deph_{$deph}">
                                         {*if $c->image}<img src="{$config->categories_images_dir}{$c->image}" alt="{$c->name}">{/if*}
-                                        <div class="deph_{$deph}"><a {if $category->id == $c->id}class="selected"{/if} href="catalog/{$c->url}" data-category="{$c->id}">{$c->name}</a></div>
+                                     <div class="deph_{$deph}"><a {if $category->id == $c->id}class="selected"{/if} href="catalog/{$c->url}" {if $c->id>100000}data-product="{$c->id-100000}"{else}data-category="{$c->id}"{/if}>{$c->name}</a></div>
                                         {categories_tree categories=$c->subcategories deph=$deph+1}
                                     </li>
                                 {/if}
@@ -190,8 +184,8 @@
                     </ul>
                     <ul>
                         <li>
-                            РОССИЯ, САНКТ-ПЕТЕРБУРГ<br/>
-                            тел. +7(921)906-87-71
+                            ВЕЛИКОБРИТАНИЯ, ЛОНДОН<br/>
+                            тел. +44 208-859-0022
                         </li>
                         <li>
                             ГРЕЦИЯ, КРИТ<br/>
@@ -203,10 +197,6 @@
                         </li>
                     </ul>
                     <ul>
-                        <li>
-                            ВЕЛИКОБРИТАНИЯ, ЛОНДОН<br/>
-                            тел. +44 208-859-0022
-                        </li>
                         <li>
                             КИПР<br/>
                             тел. 0392824-55-00
@@ -242,6 +232,7 @@
                 </div>
                 <div id="flogo">
                     <a href="/"><img src="design/{$settings->theme|escape}/images/flogo.png" title="{$settings->site_name|escape}" alt="{$settings->site_name|escape}"/></a>
+                    <div id="paris">PARIS</div>
                 </div>
             </div>
         </div>
@@ -255,6 +246,10 @@
     });
  
     $('#catalog_ul_menu li a.selected').closest('li.deph_0').find('ul.deph_1:first').show();
+    //$('#catalog_ul_menu li.deph_0 a:first').attr('href', 'javascript:void(0);');
+    $(window).load(function(){
+        $('#body_hider').fadeOut(1000);
+    });
         </script>
     </body>
 </html>

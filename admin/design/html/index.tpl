@@ -52,14 +52,6 @@
 		{$content}
 	</div>
 	<!-- Основная часть страницы (The End) --> 
-	
-	<!-- Подвал сайта -->
-	<div id="footer">
-	&copy; 2011 <a href='http://memories.ks.ua/webmaster'>Admin {$config->version}</a>
-	<a href='{$config->root_url}' id='logout'>Выход</a>
-	</div>
-	<!-- Подвал сайта (The End)--> 
-	
 </div>
 <!-- Вся страница (The End)--> 
 

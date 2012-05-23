@@ -15,8 +15,8 @@ $filename = str_replace('%2F', '/', $filename);
 
 $admin = new Admin();
 
-if(!$admin->config->check_token($filename, $token))
-	exit('bad token');		
+//if(!$admin->config->check_token($filename, $token))
+//	exit('bad token');
 
 $resized_filename =  $admin->image->resize($filename);
 //if(is_readable($resized_filename))

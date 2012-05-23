@@ -464,6 +464,7 @@ display: block;
 				{foreach name=categories from=$product_categories item=product_category}
 				<li>
 					<select name="categories[]">
+                        <option value='-1'>Корневая категория</option>
 						{function name=category_select level=0}
 						{foreach from=$categories item=category}
 								<option value='{$category->id}' {if $category->id == $selected_id}selected{/if} category_name='{$category->name|escape}'>{section name=sp loop=$level}&nbsp;&nbsp;&nbsp;&nbsp;{/section}{$category->name|escape}</option>

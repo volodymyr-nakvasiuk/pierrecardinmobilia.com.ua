@@ -64,7 +64,7 @@ class ProductsView extends View
 		if (!empty($_SESSION['sort']))
 			$filter['sort'] = $_SESSION['sort'];			
 		else
-			$filter['sort'] = 'name';			
+			$filter['sort'] = 'position';
 		$this->design->assign('sort', $filter['sort']);
 		
 		// Свойства товаров

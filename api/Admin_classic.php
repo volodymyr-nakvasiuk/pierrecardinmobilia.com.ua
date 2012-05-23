@@ -32,6 +32,7 @@ class Admin
 	public $request;	/**< Экземпляр класса Request */
 	public $db;			/**< Экземпляр класса Database  */
 	public $settings;	/**< Экземпляр класса Settings  */
+    public $lang = '';
 	public $design;		/**< Экземпляр класса Design  */
 	public $user;		/**< Экземпляр класса User  */
 	public $money;		/**< Экземпляр класса Currencies  */

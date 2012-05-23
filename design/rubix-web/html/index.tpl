@@ -27,8 +27,8 @@
 
         {* Всплывающие подсказки для администратора *}
         {if $smarty.session.admin == 'admin'}
-            <script src ="js/admintooltip/admintooltip.js" type="text/javascript"></script>
-            <link   href="js/admintooltip/css/admintooltip.css" rel="stylesheet" type="text/css" /> 
+        <script src ="js/admintooltip/admintooltip.js" type="text/javascript"></script>
+        <link   href="js/admintooltip/css/admintooltip.css" rel="stylesheet" type="text/css" />
         {/if}
 
         {* Увеличитель картинок *}
@@ -48,34 +48,34 @@
 
         {* Автозаполнитель поиска *}
         {literal}
-            <script src="js/autocomplete/jquery.autocomplete-min.js" type="text/javascript"></script>
-            <style>
-                .autocomplete-w1 { position:absolute; top:0px; left:0px; margin:6px 0 0 6px; /* IE6 fix: */ _background:none; _margin:1px 0 0 0; }
-                .autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; overflow-x:auto;  overflow-y: auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
-                .autocomplete .selected { background:#F0F0F0; }
-                .autocomplete div { padding:2px 5px; white-space:nowrap; }
-                .autocomplete strong { font-weight:normal; color:#3399FF; }
-            </style>	
-            <script>
+        <script src="js/autocomplete/jquery.autocomplete-min.js" type="text/javascript"></script>
+        <style>
+            .autocomplete-w1 { position:absolute; top:0px; left:0px; margin:6px 0 0 6px; /* IE6 fix: */ _background:none; _margin:1px 0 0 0; }
+            .autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; overflow-x:auto;  overflow-y: auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
+            .autocomplete .selected { background:#F0F0F0; }
+            .autocomplete div { padding:2px 5px; white-space:nowrap; }
+            .autocomplete strong { font-weight:normal; color:#3399FF; }
+        </style>
+        <script>
             $(function() {
-                    //  Автозаполнитель поиска
-                    $(".input_search").autocomplete({
-                            serviceUrl:'ajax/search_products.php',
-                            minChars:1,
-                            noCache: false, 
-                            onSelect:
-                                    function(value, data){
-                                             $(".input_search").closest('form').submit();
-                                    },
-                            fnFormatResult:
-                                    function(value, data, currentValue){
-                                            var reEscape = new RegExp('(' + ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', ''].join('|') + ')', 'g');
-                                            var pattern = '(' + currentValue.replace(reEscape, '$1') + ')';
-                                            return (data.image?"<img align=absmiddle src='"+data.image+"'> ":'') + value.replace(new RegExp(pattern, 'gi'), '<strong>$1</strong>');
-                                    }	
-                    });
+                //  Автозаполнитель поиска
+                $(".input_search").autocomplete({
+                    serviceUrl:'ajax/search_products.php',
+                    minChars:1,
+                    noCache: false,
+                    onSelect:
+                        function(value, data){
+                        $(".input_search").closest('form').submit();
+                    },
+                    fnFormatResult:
+                        function(value, data, currentValue){
+                        var reEscape = new RegExp('(' + ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', ''].join('|') + ')', 'g');
+                        var pattern = '(' + currentValue.replace(reEscape, '$1') + ')';
+                        return (data.image?"<img align=absmiddle src='"+data.image+"'> ":'') + value.replace(new RegExp(pattern, 'gi'), '<strong>$1</strong>');
+                    }
+                });
             });
-            </script>
+        </script>
         {/literal}
 
 
@@ -94,12 +94,12 @@
                 <!-- Меню -->
                 <ul id="menu">
                     {foreach name=page from=$pages item=p}
-                        {* Выводим только страницы из первого меню *}
-                        {if $p->menu_id == 1}
-                            <li {if $page && $page->id == $p->id}class="selected"{/if}>
-                                <a data-page="{$p->id}" href="{$p->url}">{$p->name|escape}</a>
-                            </li>
-                        {/if}
+                    {* Выводим только страницы из первого меню *}
+                    {if $p->menu_id == 1}
+                    <li {if $page && $page->id == $p->id}class="selected"{/if}>
+                        <a data-page="{$p->id}" href="{$p->url}">{$p->name|escape}</a>
+                    </li>
+                    {/if}
                     {/foreach}
                 </ul>
                 <!-- Меню (The End) -->
@@ -112,7 +112,9 @@
 
             <!-- Основная часть --> 
             <div id="content">
+                <!-- content start -->
                 {$content}
+                <!-- content end -->
             </div>
             <!-- Основная часть (The End) --> 
 
@@ -124,41 +126,23 @@
                     {* Рекурсивная функция вывода дерева категорий *}
                     {function name=categories_tree}
                     {if $categories}
-                        <ul class="deph_{$deph}" id="catalog_ul_menu">
-                            {foreach $categories as $c}
-                                {* Показываем только видимые категории *}
-                                {if $c->visible}
-                                    <li class="deph_{$deph}">
-                                        {*if $c->image}<img src="{$config->categories_images_dir}{$c->image}" alt="{$c->name}">{/if*}
-                                     <div class="deph_{$deph}"><a {if $category->id == $c->id}class="selected"{/if} href="catalog/{$c->url}" {if $c->id>100000}data-product="{$c->id-100000}"{else}data-category="{$c->id}"{/if}>{$c->name}</a></div>
-                                        {categories_tree categories=$c->subcategories deph=$deph+1}
-                                    </li>
-                                {/if}
-                            {/foreach}
-                        </ul>
+                    <ul class="deph_{$deph}" id="catalog_ul_menu">
+                        {foreach $categories as $c}
+                        {* Показываем только видимые категории *}
+                        {if $c->visible}
+                        <li class="deph_{$deph}">
+                            {*if $c->image}<img src="{$config->categories_images_dir}{$c->image}" alt="{$c->name}">{/if*}
+                            <div class="deph_{$deph}"><a {if $category->id == $c->id}class="selected"{/if} href="catalog/{$c->url}" {if $c->id>100000}data-product="{$c->id-100000}"{else}data-category="{$c->id}"{/if}>{$c->name}</a></div>
+                            {categories_tree categories=$c->subcategories deph=$deph+1}
+                        </li>
+                        {/if}
+                        {/foreach}
+                    </ul>
                     {/if}
                     {/function}
                     {categories_tree categories=$categories deph=0}
                 </div>
                 <!-- Меню каталога (The End)-->		
-
-                <!-- Просмотренные товары -->
-                {get_browsed_products var=browsed_products limit=20}
-                {if $browsed_products}
-                    <div id="recent">
-                        <h2>Вы просматривали:</h2>
-                        <ul id="browsed_products">
-                            {foreach $browsed_products as $browsed_product}
-                                <li>
-                                    <a href="products/{$browsed_product->url}"><img src="{$browsed_product->image->filename|resize:50:50}" alt="{$browsed_product->name}" title="{$browsed_product->name}"></a>
-                                </li>
-                            {/foreach}
-                        </ul>
-                    </div>
-                {/if}
-                <!-- Просмотренные товары (The End)-->
-                <!-- Просмотренные товары -->
-
             </div>			
 
         </div>
@@ -239,17 +223,24 @@
         <!-- Футер (The End)--> 
         <script type="text/javascript">
             $("#catalog_ul_menu > li > div.deph_0").click(function(){
-            if(false == $(this).next().is(':visible')) {
-            $('#catalog_ul_menu ul.deph_1').slideUp(500);
-        }
-        $(this).next().slideToggle(500);
-    });
+                if(false == $(this).next().is(':visible')) {
+                    $('#catalog_ul_menu ul.deph_1').slideUp(500);
+                }
+                $(this).next().slideToggle(500);
+            });
+            $("#catalog_ul_menu a, #menu a").click(function(){
+                $(this).parent().click();
+                $.get($(this).attr('href'), {}, function(data, textStatus, jqXHR){
+                    $("#content").html(data.split("<!-- content start -->")[1].split("<!-- content end -->")[0]);
+                });
+                return false;
+            });
  
-    $('#catalog_ul_menu li a.selected').closest('li.deph_0').find('ul.deph_1:first').show();
-    //$('#catalog_ul_menu li.deph_0 a:first').attr('href', 'javascript:void(0);');
-    $(window).load(function(){
-        $('#body_hider').fadeOut(1000);
-    });
+            $('#catalog_ul_menu li a.selected').closest('li.deph_0').find('ul.deph_1:first').show();
+            //$('#catalog_ul_menu li.deph_0 a:first').attr('href', 'javascript:void(0);');
+            $(window).load(function(){
+                $('#body_hider').fadeOut(1000);
+            });
         </script>
     </body>
 </html>

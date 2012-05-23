@@ -13,14 +13,14 @@
 </div>
 <!-- Хлебные крошки #End /-->
 
-<h1 data-product="{$product->id}">{$product->name|escape}</h1>
+<h1 style="text-transform: lowercase;" data-product="{$product->id}">{$product->name|escape}</h1>
 
 <div class="product">
 
 	<!-- Большое фото -->
 	{if $product->image}
 	<div class="image">
-		<a href="{$product->image->filename|resize:800:600:w}" class="zoom" data-rel="group"><img src="{$product->image->filename|resize:630:630}" alt="{$product->product->name|escape}" /></a>
+		<a href="{$product->image->filename|resize:800:600}" class="zoom" data-rel="group"><img src="{$product->image->filename|resize:630:630}" alt="{$product->product->name|escape}" /></a>
 	</div>
 	{/if}
 	<!-- Большое фото (The End)-->
@@ -37,7 +37,9 @@
 	<div class="images">
 		{* cut удаляет первую фотографию, если нужно начать 2-й - пишем cut:2 и тд *}
 		{foreach $product->images|cut as $i=>$image}
-			<a href="{$image->filename|resize:800:600:w}" class="zoom" data-rel="group"><img src="{$image->filename|resize:100:100}" alt="{$product->name|escape}" /></a>
+            <div class="image">
+                <a href="{$image->filename|resize:800:600}" class="zoom" data-rel="group"><img src="{$image->filename|resize:100:50}" alt="{$product->name|escape}" /></a>
+            </div>
 		{/foreach}
 	</div>
 	{/if}

@@ -9,7 +9,6 @@
 <ul id="blog">
 	{foreach $posts as $post}
 	<li>
-		<h3><a data-post="{$post->id}" href="blog/{$post->url}">{$post->name|escape}</a></h3>
 		<p>{$post->date|date}</p>
 		<p>{$post->annotation}</p>
 	</li>
@@ -18,4 +17,12 @@
 <!-- Статьи #End /-->    
 
 {include file='pagination.tpl'}
-          
+
+{literal}
+<script>
+$(function() {
+	// Зум картинок
+	$("a.zoom").fancybox({ 'hideOnContentClick' : true });
+});
+</script>
+{/literal}

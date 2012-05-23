@@ -91,7 +91,7 @@ class IndexView extends View
                 $filter = array();
                 $filter['visible'] = 1;
                 $filter['category_id'] = $category->id;
-                $filter['sort'] = 'name';
+                $filter['sort'] = 'position';
                 $filter['page'] = 1;
                 $filter['limit'] = 1000;
                 
@@ -112,5 +112,21 @@ class IndexView extends View
                 }
                 $category->subcategories = array_merge($category->subcategories, $subProducts);
             }
+
+            $filter = array();
+            $filter['visible'] = 1;
+            $filter['category_id'] = -1;
+            $filter['sort'] = 'position';
+            $filter['page'] = 1;
+            $filter['limit'] = 1000;
+
+            $subProducts = array();
+
+            foreach($this->products->get_products($filter) as $p)
+            {
+                $subProducts[] = $this->products->product_to_category($p);
+            }
+
+            $categories = array_merge($categories, $subProducts);
         }
 }

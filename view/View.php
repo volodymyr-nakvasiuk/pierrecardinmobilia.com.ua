@@ -21,12 +21,15 @@ class View extends Admin
 	public $user;
 	public $group;
 	public $page;
+    public $lang = '';
 	
 	/* Класс View похож на синглтон, храним статически его инстанс */
 	private static $view_instance;
 	
 	public function __construct()
 	{
+        $this->lang = $_COOKIE['lang']?'_en':'';
+
 		parent::__construct();
 		
 		// Если инстанс класса уже существует - просто используем уже существующие переменные
@@ -88,6 +91,7 @@ class View extends Admin
 			
 			$this->design->assign('config',		$this->config);
 			$this->design->assign('settings',	$this->settings);
+            $this->design->assign('lang',	$this->lang);
 
 			// Настраиваем плагины для смарти
 			$this->design->smarty->registerPlugin("function", "get_posts",               array($this, 'get_posts_plugin'));

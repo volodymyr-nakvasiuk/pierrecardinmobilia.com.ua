@@ -27,10 +27,10 @@
 	{* До какой страницы выводить - выводим всё окно, но не более ощего количества страниц *}
 	{$page_to = min($page_from+$visible_pages, $total_pages_num-1)}
 
-        {if $current_page_num>1}<a class="prev_page_link" href="{url page=$current_page_num-1}">←назад</a>{/if}
+        {if $current_page_num>1}<a overlay="1" class="prev_page_link" href="{url page=$current_page_num-1}">←назад</a>{/if}
 
 	{* Ссылка на 1 страницу отображается всегда *}
-	<a {if $current_page_num==1}class="selected"{/if} href="{url page=1}">1</a>
+	<a overlay="1" {if $current_page_num==1}class="selected"{/if} href="{url page=1}">1</a>
 	
 	{* Выводим страницы нашего "окна" *}	
 	{section name=pages loop=$page_to start=$page_from}
@@ -38,16 +38,16 @@
 		{$p = $smarty.section.pages.index+1}	
 		{* Для крайних страниц "окна" выводим троеточие, если окно не возле границы навигации *}	
 		{if ($p == $page_from+1 && $p!=2) || ($p == $page_to && $p != $total_pages_num-1)}	
-		<a {if $p==$current_page_num}class="selected"{/if} href="{url page=$p}">...</a>
+		<a overlay="1" {if $p==$current_page_num}class="selected"{/if} href="{url page=$p}">...</a>
 		{else}
-		<a {if $p==$current_page_num}class="selected"{/if} href="{url page=$p}">{$p}</a>
+		<a overlay="1" {if $p==$current_page_num}class="selected"{/if} href="{url page=$p}">{$p}</a>
 		{/if}
 	{/section}
 
 	{* Ссылка на последнююю страницу отображается всегда *}
-	<a {if $current_page_num==$total_pages_num}class="selected"{/if}  href="{url page=$total_pages_num}">{$total_pages_num}</a>
+	<a overlay="1" {if $current_page_num==$total_pages_num}class="selected"{/if}  href="{url page=$total_pages_num}">{$total_pages_num}</a>
 
-	{if $current_page_num<$total_pages_num}<a class="next_page_link" href="{url page=$current_page_num+1}">вперед→</a>{/if}
+	{if $current_page_num<$total_pages_num}<a overlay="1" class="next_page_link" href="{url page=$current_page_num+1}">вперед→</a>{/if}
 	
 </div>
 <!-- Листалка страниц (The End) -->

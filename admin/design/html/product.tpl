@@ -436,7 +436,8 @@ display: block;
 <input type=hidden name="session_id" value="{$smarty.session.id}">
 
  	<div id="name">
-		<input class="name" name=name type="text" value="{$product->name|escape}"/> 
+		<input class="name" name=name type="text" value="{$product->name|escape}"/>
+        <input class="name" name=name_en type="text" value="{$product->name_en|escape}"/>
 		<input name=id type="hidden" value="{$product->id|escape}"/> 
 		<div class="checkbox">
 			<input name=visible value='1' type="checkbox" id="active_checkbox" {if $product->visible}checked{/if}/> <label for="active_checkbox">Активен</label>
@@ -670,11 +671,17 @@ display: block;
 	<div class="block layer">
 		<h2>Краткое описание</h2>
 		<textarea name="annotation" class="editor_small">{$product->annotation|escape}</textarea>
-	</div>
+        <br/>
+        <h2>Краткое описание (англ.)</h2>
+		<textarea name="annotation_en" class="editor_small">{$product->annotation_en|escape}</textarea>
+    </div>
 		
 	<div class="block">		
 		<h2>Полное  описание</h2>
 		<textarea name="body" class="editor_large">{$product->body|escape}</textarea>
+        <br/>
+        <h2>Полное  описание (англ.)</h2>
+		<textarea name="body_en" class="editor_large">{$product->body_en|escape}</textarea>
 	</div>
 	<!-- Описание товара (The End)-->
 	<input class="button_green button_save" type="submit" name="" value="Сохранить" />

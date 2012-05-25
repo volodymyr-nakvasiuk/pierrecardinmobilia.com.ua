@@ -153,7 +153,8 @@ function translit(str)
 <form method=post id=product enctype="multipart/form-data">
 	<input type=hidden name="session_id" value="{$smarty.session.id}">
 	<div id="name">
-		<input class="name" name=header type="text" value="{$page->header|escape}"/> 
+		<input class="name" name=header type="text" value="{$page->header|escape}"/>
+        <input class="name" name=header_en type="text" value="{$page->header_en|escape}"/>
 		<input name=id type="hidden" value="{$page->id|escape}"/> 
 		<div class="checkbox">
 			<input name=visible value='1' type="checkbox" id="active_checkbox" {if $page->visible}checked{/if}/> <label for="active_checkbox">Активна</label>
@@ -164,6 +165,7 @@ function translit(str)
 		<div class="block">
 			<ul>
 				<li><label class=property>Название пункта в меню</label><input name="name" class="admin_inp" type="text" value="{$page->name|escape}" /></li>
+                <li><label class=property>Название пункта в меню (англ.)</label><input name="name_en" class="admin_inp" type="text" value="{$page->name_en|escape}" /></li>
 				<li><label class=property>Меню</label>	
 					<select name="menu_id">
 				   		{foreach from=$menus item=m}
@@ -198,6 +200,9 @@ function translit(str)
 	<div class="block layer">
 		<h2>Текст страницы</h2>
 		<textarea name="body"  class="editor_large">{$page->body|escape}</textarea>
+        <br/>
+        <h2>Текст страницы (англ.)</h2>
+		<textarea name="body_en" class="editor_large">{$page->body_en|escape}</textarea>
 	</div>
 	<!-- Описание товара (The End)-->
 	<input class="button_green button_save" type="submit" name="" value="Сохранить" />

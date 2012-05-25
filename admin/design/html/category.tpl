@@ -147,7 +147,8 @@ function translit(str)
 <form method=post id=product enctype="multipart/form-data">
 <input type=hidden name="session_id" value="{$smarty.session.id}">
 	<div id="name">
-		<input class="name" name=name type="text" value="{$category->name|escape}"/> 
+		<input class="name" name=name type="text" value="{$category->name|escape}"/>
+        <input class="name" name=name_en type="text" value="{$category->name_en|escape}"/>
 		<input name=id type="hidden" value="{$category->id|escape}"/> 
 		<div class="checkbox">
 			<input name=visible value='1' type="checkbox" id="active_checkbox" {if $category->visible}checked{/if}/> <label for="active_checkbox">Активна</label>

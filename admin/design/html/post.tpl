@@ -139,7 +139,8 @@ function translit(str)
 <form method=post id=product enctype="multipart/form-data">
 <input type=hidden name="session_id" value="{$smarty.session.id}">
 	<div id="name">
-		<input class="name" name=name type="text" value="{$post->name|escape}"/> 
+		<input class="name" name=name type="text" value="{$post->name|escape}"/>
+        <input class="name" name=name_en type="text" value="{$post->name_en|escape}"/>
 		<input name=id type="hidden" value="{$post->id|escape}"/> 
 		<div class="checkbox">
 			<input name=visible value='1' type="checkbox" id="active_checkbox" {if $post->visible}checked{/if}/> <label for="active_checkbox">Активна</label>
@@ -184,11 +185,17 @@ function translit(str)
 	<div class="block layer">
 		<h2>Краткое описание</h2>
 		<textarea name="annotation" class='editor_small'>{$post->annotation|escape}</textarea>
+        <br/>
+        <h2>Краткое описание (англ.)</h2>
+		<textarea name="annotation_en" class='editor_small'>{$post->annotation_en|escape}</textarea>
 	</div>
 		
 	<div class="block">
 		<h2>Полное  описание</h2>
 		<textarea name="body"  class='editor_large'>{$post->text|escape}</textarea>
+        <br/>
+        <h2>Полное  описание (англ.)</h2>
+		<textarea name="body_en"  class='editor_large'>{$post->text_en|escape}</textarea>
 	</div>
 	<!-- Описание товара (The End)-->
 	<input class="button_green button_save" type="submit" name="" value="Сохранить" />

@@ -173,7 +173,7 @@ class Categories extends Admin
 		$pointers[0]->path = array();
 		
 		// Выбираем все категории
-		$query = $this->db->placehold("SELECT id, parent_id, name, description, url, meta_title, meta_keywords, meta_description, image, visible, position
+		$query = $this->db->placehold("SELECT id, parent_id, name".LANG." as name, name_en, description, url, meta_title, meta_keywords, meta_description, image, visible, position
 								 FROM __categories ORDER BY parent_id, position");
 		$this->db->query($query);
 		$categories = $this->db->results();

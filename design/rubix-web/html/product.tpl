@@ -2,12 +2,12 @@
 
 <!-- Хлебные крошки /-->
 <div id="path">
-	<a href="./">Главная</a>
+	<a href="./">{if $lang}Main page{else}Главная{/if}</a>
 	{foreach from=$category->path item=cat}
-	→ <a href="catalog/{$cat->url}">{$cat->name|escape}</a>
+	→ <a overlay="1" href="catalog/{$cat->url}">{$cat->name|escape}</a>
 	{/foreach}
 	{if $brand}
-	→ <a href="catalog/{$cat->url}/{$brand->url}">{$brand->name|escape}</a>
+	→ <a overlay="1" href="catalog/{$cat->url}/{$brand->url}">{$brand->name|escape}</a>
 	{/if}
 	→  {$product->name|escape}                
 </div>
@@ -59,13 +59,13 @@
 		<!-- Фото товара -->
 		{if $product->image}
 		<div class="image">
-			<a href="products/{$product->url}"><img src="{$product->image->filename|resize:200:200}" alt="{$product->name|escape}"/></a>
+			<a overlay="1" href="products/{$product->url}"><img src="{$product->image->filename|resize:200:200}" alt="{$product->name|escape}"/></a>
 		</div>
 		{/if}
 		<!-- Фото товара (The End) -->
 
 		<!-- Название товара -->
-		<h3><a data-product="{$product->id}" href="products/{$product->url}">{$product->name|escape}</a></h3>
+		<h3><a overlay="1" data-product="{$product->id}" href="products/{$product->url}">{$product->name|escape}</a></h3>
 		<!-- Название товара (The End) -->
 	</li>
 	<!-- Товар (The End)-->

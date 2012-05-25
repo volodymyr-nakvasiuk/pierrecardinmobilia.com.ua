@@ -10,10 +10,10 @@
 <!-- Соседние записи /-->
 <div id="back_forward">
 	{if $prev_post}
-		←&nbsp;<a class="back" id="PrevLink" href="blog/{$prev_post->url}">{$prev_post->name}</a>
+		←&nbsp;<a overlay="1" class="back" id="PrevLink" href="blog/{$prev_post->url}">{$prev_post->name}</a>
 	{/if}
 	{if $next_post}
-		<a class="forward" id="NextLink" href="blog/{$next_post->url}">{$next_post->name}</a>&nbsp;→
+		<a overlay="1" class="forward" id="NextLink" href="blog/{$next_post->url}">{$next_post->name}</a>&nbsp;→
 	{/if}
 </div>
 
@@ -26,7 +26,7 @@
 	<!-- Список с комментариями -->
 	<ul class="comment_list">
 		{foreach $comments as $comment}
-		<a name="comment_{$comment->id}"></a>
+		<a overlay="1" name="comment_{$comment->id}"></a>
 		<li>
 			<!-- Имя и дата комментария-->
 			<div class="comment_header">	

@@ -28,7 +28,7 @@ class Blog extends Admin
 		else
 			$where = $this->db->placehold(' WHERE b.url=? ', $id);
 		
-		$query = $this->db->placehold("SELECT b.id, b.url, b.name, b.annotation, b.text, b.meta_title,
+		$query = $this->db->placehold("SELECT b.id, b.url, b.name".LANG." as name, b.name_en, b.annotation".LANG." as annotation, b.annotation_en, b.text".LANG." as text, text_en, b.meta_title,
 		                               b.meta_keywords, b.meta_description, b.visible, b.date
 		                               FROM __blog b $where LIMIT 1",
 		                               $this->settings->date_format);
@@ -75,7 +75,7 @@ class Blog extends Admin
 
 		$sql_limit = $this->db->placehold(' LIMIT ?, ? ', ($page-1)*$limit, $limit);
 
-		$query = $this->db->placehold("SELECT b.id, b.url, b.name, b.annotation, b.text,
+		$query = $this->db->placehold("SELECT b.id, b.url, b.name".LANG." as name, b.name_en, b.annotation".LANG." as annotation, b.annotation_en, b.text".LANG." as text, text_en,
 		                                      b.meta_title, b.meta_keywords, b.meta_description, b.visible,
 		                                      b.date
 		                                      FROM __blog b WHERE 1 $post_id_filter $visible_filter $keyword_filter

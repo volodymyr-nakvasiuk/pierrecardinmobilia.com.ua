@@ -26,8 +26,8 @@ class Pages extends Admin
 			$where = $this->db->placehold(' WHERE url=? ', $id);
 		else
 			$where = $this->db->placehold(' WHERE id=? ', intval($id));
-		
-		$query = "SELECT id, url, header, name, meta_title, meta_description, meta_keywords, body, menu_id, position, visible
+
+		$query = "SELECT id, url, header".LANG." header, header_en, name".LANG." as name, name_en, meta_title, meta_description, meta_keywords, body".LANG." as body, body_en, menu_id, position, visible
 		          FROM __pages $where LIMIT 1";
 
 		$this->db->query($query);
@@ -51,8 +51,9 @@ class Pages extends Admin
 
 		if(isset($filter['visible']))
 			$visible_filter = $this->db->placehold('AND visible = ?', intval($filter['visible']));
+
 		
-		$query = "SELECT id, url, header, name, meta_title, meta_description, meta_keywords, body, menu_id, position, visible
+		$query = "SELECT id, url, header".LANG." header, header_en, name".LANG." as name, name_en, meta_title, meta_description, meta_keywords, body".LANG." as body, body_en, menu_id, position, visible
 		          FROM __pages WHERE 1 $menu_filter $visible_filter ORDER BY position";
 	
 		$this->db->query($query);

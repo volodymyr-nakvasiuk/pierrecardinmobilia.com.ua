@@ -17,6 +17,7 @@ class CategoryAdmin extends Admin
 			$category->id = $this->request->post('id', 'integer');
 			$category->parent_id = $this->request->post('parent_id', 'integer');
 			$category->name = $this->request->post('name');
+            $category->name_en = $this->request->post('name_en');
 			$category->visible = $this->request->post('visible', 'boolean');
 
 			$category->url = $this->request->post('url', 'string');

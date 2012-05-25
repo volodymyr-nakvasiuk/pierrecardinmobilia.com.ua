@@ -74,13 +74,27 @@
                         return (data.image?"<img align=absmiddle src='"+data.image+"'> ":'') + value.replace(new RegExp(pattern, 'gi'), '<strong>$1</strong>');
                     }
                 });
+                var positionLoadingBox = function(){
+                    $("#loading")
+                    .css("top", (($(window).height() - 130 - 48) / 2) + $(window).scrollTop() + "px")
+                    .css("left", (($(window).width() - 48) / 2) + $(window).scrollLeft() + "px");
+                };
+                $(window).resize(positionLoadingBox).scroll(positionLoadingBox).resize();
             });
+            function setCookie(c_name,value,exdays)
+            {
+                var exdate=new Date();
+                exdate.setDate(exdate.getDate() + exdays);
+                var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString()) + "; path=/";
+                document.cookie=c_name + "=" + c_value;
+            }
         </script>
         {/literal}
 
 
     </head>
     <body>
+        <div id="loading"><img src="design/{$settings->theme|escape}/images/loading.gif" alt="Loading..." /></div>
         <div id="body_bg"><img src="design/{$settings->theme|escape}/images/bg.jpeg" alt="" /></div>
         {*<div id="body_hider"></div>*}
 
@@ -103,6 +117,10 @@
                     {/foreach}
                 </ul>
                 <!-- Меню (The End) -->
+
+                <div id="lang">
+                    <a href="javascript:void(0);" onclick="javascript:setCookie('lang', 1, {if $lang}-100{else}365{/if});window.location.reload();">{if $lang}РУС{else}ENG{/if}</a>
+                </div>
             </div>
         </div>
         <!-- Верхняя строка (The End)-->
@@ -152,6 +170,69 @@
         <div id="footer_bg">
             <div id="footer">
                 <div id="contacts">
+                    {if $lang}
+                    <ul>
+                        <li>
+                            RUSSIA, MOSCOW <br/>
+                            tel. +7 (985) 2335262
+                        </li>
+                        <li>
+                            BELOROUSSIYA, MINSK <br/>
+                            tel. +375 17-292-06-26
+                        </li>
+                        <li>
+                            QATAR, DOHA <br/>
+                            tel. +974441-4447
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            UNITED KINGDOM, LONDON <br/>
+                            tel. +44 208-859-0022
+                        </li>
+                        <li>
+                            GREECE, CRETE <br/>
+                            tel. 2810 37-25-00
+                        </li>
+                        <li>
+                            IRAN, TEHRAN <br/>
+                            tel. 00 98 21 887-81-367
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            CYPRUS <br/>
+                            tel. 0392824-55-00
+                        </li>
+                        <li>
+                            SYRIA, DAMASCUS <br/>
+                            tel. +963 11 22-18-900
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            GERMANY, ESEN <br/>
+                            tel. +49 (0) 201-63-46-14-14
+                        </li>
+                        <li>
+                            TURKEY, ANKARA <br/>
+                            tel. +90312-350-40-44
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            BELGIUM, BRUSSELS <br/>
+                            tel. 0032 (0) 23-58-52-78
+                        </li>
+                        <li>
+                            AZERBAIJAN, BAKU <br/>
+                            tel. +99 412 497-37-80
+                        </li>
+                    </ul>
+                    <div id="copyright">
+                        © 2012 FURNITURE BOUTIQUE «PIERRE CARDIN»
+                    </div>
+                    {else}
                     <ul>
                         <li>
                             РОССИЯ, МОСКВА<br/>
@@ -213,6 +294,7 @@
                     <div id="copyright">
                         &copy; 2012 БУТИК МЕБЕЛИ &laquo;PIERRE CARDIN&raquo;
                     </div>
+                    {/if}
                 </div>
                 <div id="flogo">
                     <a href="/"><img src="design/{$settings->theme|escape}/images/flogo.png" title="{$settings->site_name|escape}" alt="{$settings->site_name|escape}"/></a>
@@ -220,7 +302,7 @@
                 </div>
             </div>
         </div>
-        <!-- Футер (The End)--> 
+        <!-- Футер (The End)-->
         <script type="text/javascript">
             $("#catalog_ul_menu > li > div.deph_0").click(function(){
                 if(false == $(this).next().is(':visible')) {
@@ -230,7 +312,21 @@
             });
             $("#catalog_ul_menu a, #menu a").click(function(){
                 $(this).parent().click();
+                $("#loading").show();
+                $("ul .selected").removeClass("selected");
+                $(this).addClass("selected");
+                $(this).parent().addClass("selected");
                 $.get($(this).attr('href'), {}, function(data, textStatus, jqXHR){
+                    $("#loading").hide();
+                    $("#content").html(data.split("<!-- content start -->")[1].split("<!-- content end -->")[0]);
+                });
+                return false;
+            });
+
+            $("#content a[overlay]").live("click", function(){
+                $("#loading").show();
+                $.get($(this).attr('href'), {}, function(data, textStatus, jqXHR){
+                    $("#loading").hide();
                     $("#content").html(data.split("<!-- content start -->")[1].split("<!-- content end -->")[0]);
                 });
                 return false;

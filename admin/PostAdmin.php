@@ -10,6 +10,7 @@ class PostAdmin extends Admin
 		{
 			$post->id = $this->request->post('id', 'integer');
 			$post->name = $this->request->post('name');
+            $post->name_en = $this->request->post('name_en');
 			$post->date = date('Y-m-d', strtotime($this->request->post('date')));
 			
 			$post->visible = $this->request->post('visible', 'boolean');
@@ -20,7 +21,9 @@ class PostAdmin extends Admin
 			$post->meta_description = $this->request->post('meta_description');
 			
 			$post->annotation = $this->request->post('annotation');
+            $post->annotation_en = $this->request->post('annotation_en');
 			$post->text = $this->request->post('body');
+            $post->text_en = $this->request->post('body_en');
 
  			// Не допустить одинаковые URL разделов.
 			if(($a = $this->blog->get_post($post->url)) && $a->id!=$post->id)

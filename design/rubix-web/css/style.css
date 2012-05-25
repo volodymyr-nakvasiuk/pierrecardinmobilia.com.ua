@@ -202,6 +202,26 @@ e[type="button"] {
     width: 220px;
     height: 84px;
 }
+#lang{
+    margin: 0;
+    padding: 0;
+    float: right;
+    clear: right;
+    width: 45px;
+    height: 53px;
+    background-color: #DA1E29;
+    line-height: 50px;
+    vertical-align: middle;
+    text-align: center;
+}
+#lang a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#lang a:hover {
+    text-decoration: underline;
+}
 #contact{
     float: right;
     text-align: right;
@@ -1155,5 +1175,13 @@ table.order_info td
     background:#be161d;
     color:#fff;
     text-decoration:none;
+}
+#loading {
+    position: absolute;
+    display:none;
+    margin: 0;
+    padding: 0;
+    width: 48px;
+    height: 48px;
 }
 /* @end */

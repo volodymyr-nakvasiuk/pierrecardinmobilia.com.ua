@@ -29,6 +29,7 @@ class View extends Admin
 	public function __construct()
 	{
         $this->lang = $_COOKIE['lang']?'_en':'';
+        define('LANG', $this->lang);
 
 		parent::__construct();
 		

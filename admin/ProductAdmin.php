@@ -21,6 +21,7 @@ class ProductAdmin extends Admin
 		{
 			$product->id = $this->request->post('id', 'integer');
 			$product->name = $this->request->post('name');
+            $product->name_en = $this->request->post('name_en');
 			$product->visible = $this->request->post('visible', 'boolean');
 			$product->featured = $this->request->post('featured');
 			$product->brand_id = $this->request->post('brand_id', 'integer');
@@ -31,7 +32,9 @@ class ProductAdmin extends Admin
 			$product->meta_description = $this->request->post('meta_description');
 			
 			$product->annotation = $this->request->post('annotation');
+            $product->annotation_en = $this->request->post('annotation_en');
 			$product->body = $this->request->post('body');
+            $product->body_en = $this->request->post('body_en');
 
 			// Варианты товара
 			if($this->request->post('variants'))

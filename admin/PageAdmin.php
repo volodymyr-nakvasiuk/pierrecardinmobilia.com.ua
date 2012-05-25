@@ -9,12 +9,15 @@ class PageAdmin extends Admin
 		{
 			$page->id = $this->request->post('id', 'integer');
 			$page->name = $this->request->post('name');
+            $page->name_en = $this->request->post('name_en');
 			$page->header = $this->request->post('header');
+            $page->header_en = $this->request->post('header_en');
 			$page->url = $this->request->post('url');
 			$page->meta_title = $this->request->post('meta_title');
 			$page->meta_keywords = $this->request->post('meta_keywords');
 			$page->meta_description = $this->request->post('meta_description');
 			$page->body = $this->request->post('body');
+            $page->body_en = $this->request->post('body_en');
 			$page->menu_id = $this->request->post('menu_id', 'integer');
 			$page->visible = $this->request->post('visible', 'boolean');
 	

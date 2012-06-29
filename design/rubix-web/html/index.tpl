@@ -44,7 +44,12 @@
 
         {* js-проверка форм *}
         <script src="/js/baloon/js/baloon.js" type="text/javascript"></script>
-        <link   href="/js/baloon/css/baloon.css" rel="stylesheet" type="text/css" /> 
+        <link   href="/js/baloon/css/baloon.css" rel="stylesheet" type="text/css" />
+
+        {* Yandex Maps *}
+        <script type="text/javascript" src="http://api-maps.yandex.ru/2.0/?coordorder=longlat&amp;load=package.full&amp;wizard=constructor&amp;lang={if $lang}en-GB{else}ru-RU{/if}"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAli_ZBR2EnVycVwr1xwBs-x_NwkN4htLk&sensor=true&language={if $lang}en{else}ru{/if}"></script>
+
 
         {* Автозаполнитель поиска *}
         {literal}
@@ -303,6 +308,7 @@
             </div>
         </div>
         <!-- Футер (The End)-->
+        {literal}
         <script type="text/javascript">
             $("#catalog_ul_menu > li > div.deph_0").click(function(){
                 if(false == $(this).next().is(':visible')) {
@@ -310,33 +316,40 @@
                 }
                 $(this).next().slideToggle(500);
             });
+
+            function loadNewPageByAjax(href) {
+                $("#loading").attr('href', href).show();
+                $.get(href, {}, function(data, textStatus, jqXHR){
+                    var href = $("#loading").attr('href');
+                    var title = data.split("<title>")[1].split("</title>")[0];
+                    var content = data.split("<!-- content start -->")[1].split("<!-- content end -->")[0];
+
+                    $("#loading").attr('href', null).hide();
+                    $("#content").html(content);
+                    history.pushState({"html":data, "pageTitle":title, "path":href}, title, href);
+                });
+            }
+
             $("#catalog_ul_menu a, #menu a").click(function(){
                 $(this).parent().click();
                 $("#loading").show();
                 $("ul .selected").removeClass("selected");
                 $(this).addClass("selected");
                 $(this).parent().addClass("selected");
-                $.get($(this).attr('href'), {}, function(data, textStatus, jqXHR){
-                    $("#loading").hide();
-                    $("#content").html(data.split("<!-- content start -->")[1].split("<!-- content end -->")[0]);
-                });
+                loadNewPageByAjax($(this).attr('href'));
                 return false;
             });
 
             $("#content a[overlay]").live("click", function(){
-                $("#loading").show();
-                $.get($(this).attr('href'), {}, function(data, textStatus, jqXHR){
-                    $("#loading").hide();
-                    $("#content").html(data.split("<!-- content start -->")[1].split("<!-- content end -->")[0]);
-                });
+                loadNewPageByAjax($(this).attr('href'));
                 return false;
             });
  
             $('#catalog_ul_menu li a.selected').closest('li.deph_0').find('ul.deph_1:first').show();
-            //$('#catalog_ul_menu li.deph_0 a:first').attr('href', 'javascript:void(0);');
             $(window).load(function(){
                 $('#body_hider').fadeOut(1000);
             });
         </script>
+        {/literal}
     </body>
 </html>
